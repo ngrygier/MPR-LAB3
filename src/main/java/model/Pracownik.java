@@ -67,14 +67,14 @@ public class Pracownik {
         this.stanowisko = stanowisko;
     }
 
-    @Override
+    @Override //porownywanie dwoch pracownikow
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pracownik pracownik = (Pracownik) o;
         return wynagrodzenie == pracownik.wynagrodzenie && Objects.equals(imie, pracownik.imie) && Objects.equals(nazwisko, pracownik.nazwisko) && Objects.equals(email, pracownik.email) && stanowisko == pracownik.stanowisko;
     }
 
-    @Override
+    @Override //porownywanie hashCode
     public int hashCode() {
         return Objects.hash(imie, nazwisko, email, wynagrodzenie, stanowisko);
     }

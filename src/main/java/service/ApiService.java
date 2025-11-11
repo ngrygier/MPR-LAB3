@@ -12,6 +12,7 @@ import java.nio.file.*;
 import java.io.IOException;
 
 public class ApiService {
+    //pobieranie z API
     public static void fetchFromAPI() throws IOException, InterruptedException, ApiException {
         HttpClient client = HttpClient.newHttpClient();
 
@@ -28,6 +29,7 @@ public class ApiService {
             Gson gson = new Gson();
             JsonObject post = gson.fromJson(response.body(), JsonObject.class);
 
+            //tworzenie nowego rpogramisty
             String pelneImie = post.get("name").getAsString();
             String email = post.get("email").getAsString();
             String companyName = post.get("company.name").getAsString();

@@ -17,8 +17,9 @@ public class ImportService {
         int zaimportowani = 0;
         int bledy = 0;
         try(CSVReader reader = new CSVReader(new FileReader(sciezka))){
+            //czyta caly plis csv
             List<String[]> allRows = reader.readAll();
-
+            //indeksowanie od 1, bo bez naglowkow
             for(int i = 1; i<allRows.size(); i++){
                 String[] row = allRows.get(i);
                 String firstName = row[0];
@@ -29,6 +30,7 @@ public class ImportService {
                 int wynagrodzenie = Integer.parseInt(row[5]);
 
                 if(Objects.equals(stanowisko, String.valueOf(Stanowisko.valueOf(stanowisko.toUpperCase()))) && (wynagrodzenie>0)){
+                    //jezeli wszystko sie zgadza, importujemy pracownika
                     new Pracownik(firstName, lastName, compamyName, email, Stanowisko.valueOf(stanowisko.toUpperCase()));
                     zaimportowani++;
                 }
@@ -39,6 +41,6 @@ public class ImportService {
 
             }
         }
-        return new ImportSummary(bledy, zaimportowani);
-    }
+        return new ImportSummary(bledy, zaimportowani); //zwraca liste pracownikow blednych i prawidlowych
+        }
 }

@@ -13,6 +13,7 @@ public enum Stanowisko {
 
     private final int pensja;
 
+    //przypisywanie konkrretnej pensji do stanowiska
     Stanowisko(int pensja) {
         this.pensja = pensja;
     }

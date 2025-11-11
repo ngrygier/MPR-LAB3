@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class PracownikService {
     ArrayList<Pracownik> listaPracownikow = new ArrayList<>();
 
-
+    //dodawanie pracownika do listy
     public void dodajPracownika(Pracownik pracownik){
         for(Pracownik p : listaPracownikow){
             if(p.getEmail().equals(pracownik.getEmail())){
@@ -19,12 +19,14 @@ public class PracownikService {
         }
         listaPracownikow.add(pracownik);
     }
+    //wyswietlanie pracownikow
     public void wyswietlPracownikow(){
         for(Pracownik p: listaPracownikow){
             System.out.println(p + "\n");
         }
     }
 
+    //wyszukiwanie po firmie
     public void szukajPoFirmie(String przykladowaNazwa) {
         for(Pracownik p : listaPracownikow){
             if(p.getNazwaFirmy().equals(przykladowaNazwa)){
@@ -33,6 +35,7 @@ public class PracownikService {
         }
     }
 
+    //sortowanie alfabetyczne
     public void sortujAlfabetycznie(){
         Comparator<Pracownik> nazwiwskoComparator = new Comparator<Pracownik>() {
             @Override
@@ -46,6 +49,7 @@ public class PracownikService {
         }
     }
 
+    //grupowanie po stanowisku
     public HashMap<Stanowisko, ArrayList<Pracownik>> grupujPoStanowisku(){
         HashMap<Stanowisko, ArrayList<Pracownik>> grupowaniePoStanowisku = new HashMap<>();
         for(Stanowisko s: Stanowisko.values()){
@@ -60,6 +64,7 @@ public class PracownikService {
         return grupowaniePoStanowisku;
     }
 
+    //zlicanie pracownikow
     public HashMap<Stanowisko, Integer> zliczPracownikow(){
         HashMap<Stanowisko, Integer> zliczaniePracownikow= new HashMap<>();
         for(Stanowisko s: Stanowisko.values()){
@@ -73,6 +78,7 @@ public class PracownikService {
 
     }
 
+    //liczenie sredniego wynagrodzenia
     public double statystykaWynagrodzenia(){
         double wszystkieWynagrodzenia = 0;
         double liczbaPracownikow = 0;
@@ -84,6 +90,7 @@ public class PracownikService {
         return srednieWynagrodzenie;
     }
 
+    //szukanie pracownika z najwieksza pensja
     public Pracownik najlepiejPlatny(){
         if(listaPracownikow.isEmpty()) return null;
 
@@ -96,6 +103,7 @@ public class PracownikService {
         return najlepiejPlatny;
     }
 
+    //tworzenie listy pracownikow z wynagrodzeniem nizszym niz srednia
     public ArrayList<Pracownik> validateSalaryConsistency(){
         ArrayList<Pracownik> nizszeWynagrodzenie = new ArrayList<>();
         for(Pracownik p: listaPracownikow){
@@ -106,8 +114,8 @@ public class PracownikService {
         return nizszeWynagrodzenie;
     }
 
+    //statystyki firm (liczba pracownikow, srednie wynagrodzenie, najlepiej platny pracownik)
     public Map<String, CompanyStatistics> getCompanyStatistics(){
-
         Map<String, ArrayList<Pracownik>> grupyFirm = new HashMap<>();
         for(Pracownik p: listaPracownikow){
             String nazwaFirmy = p.getNazwaFirmy();
